@@ -1,0 +1,21 @@
+{% extends 'base2.html' %}
+
+
+{% block titulo %}
+    Detalle de videojuego
+{% endblock titulo %}
+
+{% block contenido %}
+    <h1>{{object.titulo}}</h1>
+    <h3>{{object.categoria}}</h3>
+    <h4>{{object.anio}}</h4>
+    <p>{{object.precio}}</p>
+    
+    {% if object.descripcion %}
+        <div>
+            {{object.descripcion}}
+        </div>
+    {% endif %}
+        
+    <a href="{% url 'videojuego:lista' %}" class="btn btn-success">Regresar</a>
+{% endblock contenido %}

@@ -1,0 +1,30 @@
+h1{
+  text-align: center;
+}
+
+#hrstyle {
+  border-top: 5px solid black;
+}
+
+@page {
+    margin: 2cm;
+    @bottom-left {
+        background: #bcbbc2;
+        content: counter(page);
+        height: 1cm;
+        text-align: center;
+        width: 1cm; }
+      @bottom-center {
+        background: #bcbbc2;
+        content: '';
+        display: block;
+        height: .05cm;
+        opacity: .5;
+        width: 100%; }
+      @top-right {
+        content: string(heading);
+        font-size: 9pt;
+        height: 1cm;
+        vertical-align: middle;
+        width: 100%; }
+}

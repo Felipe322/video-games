@@ -1,0 +1,20 @@
+{% extends 'base2.html' %}
+
+{% block titulo %}
+    Nueva categoría
+{% endblock titulo %}
+
+{% block css %}
+{% endblock css %}
+
+{% block contenido %}
+    <h1>Nueva categoría</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-success">Agregar</button>
+    </form>
+</body>
+</html>
+
+{% endblock contenido %}

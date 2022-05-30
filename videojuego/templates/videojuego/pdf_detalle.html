@@ -1,0 +1,22 @@
+{% load static %}
+
+<link id="theme-style" rel="stylesheet" href="{% static 'css/estilos.css' %}">
+
+{% block contenido %}
+    <h1>{{object.titulo}}</h1>
+    <hr id="hrstyle">
+    <br>
+    <br>
+    <h3>Categoría:</h3><p>{{object.categoria}}</p>
+    <hr>
+    <h3>Año de estreno: </h4><p>{{object.anio}}</p>
+    <hr>
+    <p><u>Precio</u>: {{object.precio}}</p>
+    <hr>
+    {% if object.descripcion %}
+        <div>
+           <h6>Descripción:</h6>  <p>{{object.descripcion}}</p> 
+        </div>
+    {% endif %}
+        
+{% endblock contenido %}

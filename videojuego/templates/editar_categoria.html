@@ -1,0 +1,20 @@
+{% extends 'base2.html' %}
+
+{% block titulo %}
+    Actualizar categoría
+{% endblock titulo %}
+
+{% block css %}
+{% endblock css %}
+
+{% block contenido %}
+    <h1>Actualizar categoría</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+</body>
+</html>
+
+{% endblock contenido %}

@@ -1,0 +1,83 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block titulo %}
+    Lista de categorías
+{% endblock titulo %}
+
+{% block contenido %}
+<h1 class="app-page-title" >Lista de categorías</h1>
+<div class="app-card app-card-orders-table shadow-sm mb-5">
+    <a href="{% url 'categoria:nuevo' %}" class="btn btn-primary">Nueva categoría</a>
+    <hr>
+    <br>
+    <table class="table">
+        <thead>
+            <th>ID</th>
+            <th>Nombre categoría</th>
+            <th>Acciones</th>
+        </thead>
+        <tbody>
+            {% for categoria in page_obj %}
+                <tr>
+                    <td>{{categoria.id}}</td>
+                    <td>{{categoria.nombre}}</td>
+                    <td><button 
+                        onclick="muestraModal(`{% url 'categoria:eliminar' categoria.id %}` , '{{categoria.nombre}}')" 
+                        type="button" class="btn btn-danger" data-toggle="modal" 
+                        data-target="#exampleModal">
+                            Eliminar
+                    </button>
+                    </td>
+                    <td><a href="{% url 'categoria:editar' categoria.id %}" class="btn btn-info">Editar</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item disabled"><span class="step-links"></li>
+          {% if page_obj.has_previous %}
+            <span><a class="page-link" href="?page=1">&laquo; Primera</a></span>
+            <span><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a></span>
+          {% endif %}
+          {% for page_actual in  page_obj.paginator.page_range %}
+            {% if page_actual == page_obj.number %}
+              <span class="page-item active" aria-current="page" ><a class="page-link" href="?page={{ page_actual }}">{{ page_actual }}</a></span>
+            {% else %}
+              <span><a class="page-link" href="?page={{ page_actual }}">{{ page_actual }}</a></span>
+            {% endif %}
+          {% endfor %}
+          {% if page_obj.has_next %}
+              <span><a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a></span>
+              <span><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a></span>
+          {% endif %}
+      </span>
+      </ul>
+    </nav>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modalCuerpo">
+      </div>
+      <div class="modal-footer">
+        <form id="formEliminar" method="post">
+          {% csrf_token %}
+          <button class="btn btn-danger" type="submit">Sí, si quiero</button>
+        </form>
+        <button type="submit" class="btn btn-success" data-dismiss="modal">Mejor no</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock contenido %}
+
+{% block js %}
+  <script src="{% static 'js/funciones.js' %}"></script>
+{% endblock js %}

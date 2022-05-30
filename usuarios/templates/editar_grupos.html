@@ -1,0 +1,14 @@
+{% extends 'base2.html' %}
+
+{% block titulo %}
+    Asignación de grupos
+{% endblock titulo %}
+
+{% block contenido %}
+    <h1>Asignación de grupos</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-success">Actualizar</button>
+    </form>
+{% endblock contenido %}

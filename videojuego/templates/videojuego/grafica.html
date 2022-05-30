@@ -1,0 +1,52 @@
+{% extends 'base2.html' %}
+{% load  %}
+
+{% block titulo %}
+    Gráfica videojuego
+{% endblock titulo %}
+
+{% block contenido %}
+<h1 align="center" >Gráfica de elementos actuales</h1>
+    <div id="grafica" style="min-width: 310px; height: 400px; margin: 0 auto;" ></div>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js "></script>
+    <script src="https://code.highcharts.com/modules/exporting-data.js "></script>
+    <script>
+        Highcharts.chart('grafica', {
+            lang: {
+                downloadCSV: "Descarga CSV",
+                downloadJPEG: "Descarga imágen JPG",
+                downloadPDF: "Descarga PDF",
+                downloadPNG: "Descarga PNG",
+                downloadSVG: "Descarga en imágen de vectores",
+                viewFullscreen: "Ver en pantalla completa",
+                printChart: "Imprimir gráfica"
+            },
+            chart:{
+                type: 'column',
+            },
+            title: {
+                text: 'Gráfica de videojuegos por categorías'
+            },
+            subtitle: {
+                text: 'Número de videojuegos por categorías'
+            },
+            xAxis:{
+                categories: ['Categorias']
+            },
+            yAxis:{
+                min: 0,
+                title:{
+                    text :  'Cantidad de videojuegos.'
+                }
+            },
+            plotOptions:{
+                column:{
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                }
+            },
+            series: {{datos | safe}}
+        });
+    </script>
+{% endblock contenido %}

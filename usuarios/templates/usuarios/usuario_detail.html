@@ -1,0 +1,27 @@
+{% extends 'base2.html' %}
+
+
+{% block titulo %}
+    Detalle de usuario
+{% endblock titulo %}
+
+{% block contenido %}
+    <h1>{{object.first_name}}</h1>
+    <h3>{{object.username}}</h3>
+    <h4>{{object.estado}}</h4>
+    <p>{{object.municipio}}</p>
+    <p>{{perms.videojuegos_usuario}}</p>
+        {% if object.foto %}
+          <img src="{{MEDIA_URL}}{{object.foto}}" alt="" width="40px">
+        {% else %}
+          <p>Sin avatar</p>
+        {% endif %}
+    
+    {% if object.first_name %}
+        <div>
+            {{object.first_name}}
+        </div>
+    {% endif %}
+        
+    <a href="{% url 'usuarios:lista' %}" class="btn btn-success">Regresar</a>
+{% endblock contenido %}

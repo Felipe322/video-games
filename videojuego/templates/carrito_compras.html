@@ -1,0 +1,44 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block titulo %}
+Videojuegos en el carrito
+{% endblock titulo %}
+    
+
+{% block contenido %}
+<h1 class="app-page-title">Videojuegos en el carrito</h1>   
+<div class="app-card app-card-orders-table shadow-sm mb-5">
+    <hr>
+    <br>
+    <table class="table">
+        <thead>
+            <th>Videojuego</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+            <th>Eliminar</th>
+        </thead>
+        <tbody>
+            {% for articulo in articulos  %}
+            <tr>
+                <td>{{articulo.nombre}}</td>
+                <td>{{articulo.precio}}</td>
+                <td>{{articulo.cantidad}}</td>
+                <td>{{articulo.total}}</td>
+                <td><a href="{% url 'videojuego:eliminar' videojuego.id %}" class="btn btn-primary">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<a href="{% url 'videojuego:lista' %}" class="w3-button w3-khaki"> <-- Regresar al menú</a>
+<p>Total a pagar = ${{total}}</p><a href="{% url 'videojuego:comprar' %}" class="btn btn-primary">Proceder al pago --> </a>
+
+{% endblock contenido %}
+
+{% block js %}
+    <script src="{% static 'js/funciones.js' %}"></script>    
+{% endblock js %}
+    
+    
